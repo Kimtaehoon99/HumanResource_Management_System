@@ -1,37 +1,28 @@
 package employee;
 
 import java.util.Scanner;
-	
-public class PlanningDepartmentEmployee extends Employee {
+
+public class AccountingDepartmentEmployee extends Employee {
 	//Employee 클래스를 상속하였으며 추가 필드를 가진다.
-	protected int projectCount; 		//해당 직원이 관리하는 프로젝트 수 (정수)
-	protected int projectBudget; 		//해당 직원이 책임지는 프로젝트 예산 (정수)
+	protected int financialStatementsPrepared; 	// 해당 직원이 작성한 재무제표 수 (정수) 
 	
 	//Employee 클래스를 상속하였으며 추가 메소드를 가진다.
-	public PlanningDepartmentEmployee(EmployeeKind kind) {
-	this.kind = kind;
+	public AccountingDepartmentEmployee(EmployeeKind kind) {
+		this.kind = kind;
 	}
 	
-	public int getProjectCount() {
-		return projectCount;
+	public int getFinancialStatementsPrepared() {
+		return financialStatementsPrepared;
 	}
 
-	public void setProjectCount(int recruitmentCount) {
-		this.projectCount = recruitmentCount;
+	public void setFinancialStatementsPrepared (int financialStatementsPrepared) {
+		this.financialStatementsPrepared = financialStatementsPrepared;
 	}
 	
-	public int getProjectBudget() {
-		return projectBudget;
-	}
-
-	public void setProjectBudget(int projectBudget) {
-		this.projectBudget = projectBudget;
-	}
-	
-	//Employee 클래스를 상속하였으며 메소드 오버라이딩하여 planningDepartmentEmployee클래스에 적합한 메소드를 가진다.
+	//Employee 클래스를 상속하였으며 메소드 오버라이딩하여 AccountingDepartmentEmployee클래스에 적합한 메소드를 가진다.
 	public void getUserInput(Scanner input) {
 		System.out.print("Employee Id:");
-		int id = input.nextInt();
+		int id = input.nextInt(); 
 		this.setId(id);
 
 		System.out.print("Employee name:");
@@ -56,18 +47,14 @@ public class PlanningDepartmentEmployee extends Employee {
 			else {
 			}
 		}
-
-		System.out.print("PhoneNumber:");
+		
+		System.out.print("PhoneNumber: ");
 		String phoneNumber = input.next();
 		this.setPhoneNumber(phoneNumber);
 		
-		System.out.print("ProjectCount:");
-		int projectCount = input.nextInt();
-		this.setProjectCount( projectCount);
-		
-		System.out.print("ProjectBudget:");
-		int projectBudget = input.nextInt();
-		this.setProjectBudget(projectBudget);
+		System.out.print("financialStatementsPrepared: ");
+		int financialStatementsPrepared = input.nextInt();
+		this.setFinancialStatementsPrepared(financialStatementsPrepared);
 		
 	}
 	
@@ -91,7 +78,6 @@ public class PlanningDepartmentEmployee extends Employee {
 		default:
 			
 		}
-		System.out.println("kind: " + skind + "name: "+ name + " id: " + id + " email: " + email + " phoneNumber: " + phoneNumber + "projectCount: " + projectCount + "projectBudjet: " + projectBudget);
+		System.out.println("kind: " + skind + "name: "+ name + " id: " + id + " email: " + email + " phoneNumber: " + phoneNumber + "financialStatementsPrepared: " + financialStatementsPrepared);
 	}
-		
 }

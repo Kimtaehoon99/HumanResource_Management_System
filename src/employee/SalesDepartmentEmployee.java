@@ -1,37 +1,37 @@
 package employee;
 
 import java.util.Scanner;
-	
-public class PlanningDepartmentEmployee extends Employee {
+
+public class SalesDepartmentEmployee extends Employee {
 	//Employee 클래스를 상속하였으며 추가 필드를 가진다.
-	protected int projectCount; 		//해당 직원이 관리하는 프로젝트 수 (정수)
-	protected int projectBudget; 		//해당 직원이 책임지는 프로젝트 예산 (정수)
+	protected int monthlySales; 			//해당 직원의 월간 판매 실적 (정수)
+	protected double customerSatisfactionRate; //해당 직원의 담당 고객 만족도 (실수)
 	
 	//Employee 클래스를 상속하였으며 추가 메소드를 가진다.
-	public PlanningDepartmentEmployee(EmployeeKind kind) {
-	this.kind = kind;
+	public SalesDepartmentEmployee(EmployeeKind kind) {
+		this.kind = kind;
 	}
 	
-	public int getProjectCount() {
-		return projectCount;
+	public int getMonthlySales() {
+		return monthlySales;
 	}
 
-	public void setProjectCount(int recruitmentCount) {
-		this.projectCount = recruitmentCount;
+	public void setMonthlySales(int monthlySales) {
+		this.monthlySales = monthlySales;
 	}
 	
-	public int getProjectBudget() {
-		return projectBudget;
+	public double getCustomerSatisfactionRate() {
+		return customerSatisfactionRate;
 	}
 
-	public void setProjectBudget(int projectBudget) {
-		this.projectBudget = projectBudget;
+	public void setCustomerSatisfactionRate(double customerSatisfactionRate) {
+		this.customerSatisfactionRate = customerSatisfactionRate;
 	}
 	
-	//Employee 클래스를 상속하였으며 메소드 오버라이딩하여 planningDepartmentEmployee클래스에 적합한 메소드를 가진다.
+	//Employee 클래스를 상속하였으며 메소드 오버라이딩하여 SalesDepartmentEmployee클래스에 적합한 메소드를 가진다.
 	public void getUserInput(Scanner input) {
 		System.out.print("Employee Id:");
-		int id = input.nextInt();
+		int id = input.nextInt(); 
 		this.setId(id);
 
 		System.out.print("Employee name:");
@@ -56,18 +56,18 @@ public class PlanningDepartmentEmployee extends Employee {
 			else {
 			}
 		}
-
+		
 		System.out.print("PhoneNumber:");
 		String phoneNumber = input.next();
 		this.setPhoneNumber(phoneNumber);
 		
-		System.out.print("ProjectCount:");
-		int projectCount = input.nextInt();
-		this.setProjectCount( projectCount);
+		System.out.print("monthlySales:");
+		int monthlySales = input.nextInt();
+		this.setMonthlySales(monthlySales);
 		
-		System.out.print("ProjectBudget:");
-		int projectBudget = input.nextInt();
-		this.setProjectBudget(projectBudget);
+		System.out.print("customerSatisfactionRate:");
+		int customerSatisfactionRate = input.nextInt();
+		this.setCustomerSatisfactionRate(customerSatisfactionRate);
 		
 	}
 	
@@ -91,7 +91,6 @@ public class PlanningDepartmentEmployee extends Employee {
 		default:
 			
 		}
-		System.out.println("kind: " + skind + "name: "+ name + " id: " + id + " email: " + email + " phoneNumber: " + phoneNumber + "projectCount: " + projectCount + "projectBudjet: " + projectBudget);
+		System.out.println("kind: " + skind + "name: "+ name + " id: " + id + " email: " + email + " phoneNumber: " + phoneNumber + "monthlySales: " + monthlySales + "customerSatisfactionRate: " + customerSatisfactionRate);
 	}
-		
 }

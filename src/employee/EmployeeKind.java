@@ -5,4 +5,5 @@ public enum EmployeeKind {
 	PlanningDepartment,
 	HumanResourcesDepartment,
 	AccountingDepartment,
+	MarketingDepartment
 }

@@ -3,8 +3,13 @@ package java_project;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import employee.AccountingDepartmentEmployee;
 import employee.Employee;
+import employee.EmployeeKind;
+import employee.HumanResourcesDepartmentEmployee;
+import employee.MarketingDepartmentEmployee;
 import employee.PlanningDepartmentEmployee;
+import employee.SalesDepartmentEmployee;
 
 
 public class EmployeeManager {
@@ -19,25 +24,46 @@ public class EmployeeManager {
 	public void addEmployee() {
 		int kind = 0;
 		Employee employee;
-		while(kind != 1 && kind != 2) {
+		while(kind != 1 && kind != 2 && kind != 3 && kind != 4 && kind != 5) {
 			System.out.println("1 for SalesDevelopement");
 			System.out.println("2 for PlanningDepartment");
-			System.out.println("Select Employee Kind between 1 and 2");
+			System.out.println("3 for HumanResourcesDepartment");
+			System.out.println("4 for AccountingDepartment");
+			System.out.println("5 for MarketingDepartment");
+			System.out.println("Select Employee Kind between 1 and 5");
 			kind = input.nextInt();
 			if (kind == 1) {
-				employee = new Employee();
+				employee = new SalesDepartmentEmployee(EmployeeKind.SalesDepartment);
 				employee.getUserInput(input);
 				employees.add(employee);
 				break;
 			}
 			else if (kind == 2) {
-				employee = new PlanningDepartmentEmployee();
+				employee = new PlanningDepartmentEmployee(EmployeeKind.PlanningDepartment);
+				employee.getUserInput(input);
+				employees.add(employee);
+				break;
+			}
+			else if (kind == 3) {
+				employee = new HumanResourcesDepartmentEmployee(EmployeeKind.HumanResourcesDepartment);
+				employee.getUserInput(input);
+				employees.add(employee);
+				break;
+			}
+			else if (kind == 4) {
+				employee = new AccountingDepartmentEmployee(EmployeeKind.AccountingDepartment);
+				employee.getUserInput(input);
+				employees.add(employee);
+				break;
+			}
+			else if (kind == 5) {
+				employee = new MarketingDepartmentEmployee(EmployeeKind.MarketingDepartment);
 				employee.getUserInput(input);
 				employees.add(employee);
 				break;
 			}
 			else {
-				System.out.println("Select Employee Kind between 1 and 2");
+				System.out.println("Select Employee Kind between 1 and 5");
 			}
 		}
 
@@ -63,6 +89,7 @@ public class EmployeeManager {
 			return;
 		}
 	}
+	
 	public void editEmployee() {
 		System.out.print("Employee ID:");
 		int employeeId = input.nextInt();
@@ -109,7 +136,7 @@ public class EmployeeManager {
 
 	}
 	public void viewEmployees() {
-		System.out.println("# of registered students:" + employees.size());
+		System.out.println("# of registered employees:" + employees.size());
 		for(int i = 0; i < employees.size(); i++){
 			employees.get(i).printinfo();
 		}
