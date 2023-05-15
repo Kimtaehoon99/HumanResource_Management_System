@@ -2,7 +2,7 @@ package employee;
 
 import java.util.Scanner;
 
-public class AccountingDepartmentEmployee extends Employee {
+public class AccountingDepartmentEmployee extends Employee implements EmployeeInput {
 	//Employee 클래스를 상속하였으며 추가 필드를 가진다.
 	protected int financialStatementsPrepared; 	// 해당 직원이 작성한 재무제표 수 (정수) 
 	
@@ -58,7 +58,7 @@ public class AccountingDepartmentEmployee extends Employee {
 		
 	}
 	
-	public void printinfo() {
+	public void printInfo() {
 		
 		String skind = "none";
 		

@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import employee.AccountingDepartmentEmployee;
 import employee.Employee;
+import employee.EmployeeInput;
 import employee.EmployeeKind;
 import employee.HumanResourcesDepartmentEmployee;
 import employee.MarketingDepartmentEmployee;
@@ -14,7 +15,7 @@ import employee.SalesDepartmentEmployee;
 
 public class EmployeeManager {
 
-	ArrayList<Employee> employees = new ArrayList<Employee>();	
+	ArrayList<EmployeeInput> employees = new ArrayList<EmployeeInput>();	
 	Scanner input;
 	EmployeeManager(Scanner input){
 		this.input = input;
@@ -23,7 +24,7 @@ public class EmployeeManager {
 
 	public void addEmployee() {
 		int kind = 0;
-		Employee employee;
+		EmployeeInput employeeInput;
 		while(kind != 1 && kind != 2 && kind != 3 && kind != 4 && kind != 5) {
 			System.out.println("1 for SalesDevelopement");
 			System.out.println("2 for PlanningDepartment");
@@ -33,33 +34,33 @@ public class EmployeeManager {
 			System.out.println("Select Employee Kind between 1 and 5");
 			kind = input.nextInt();
 			if (kind == 1) {
-				employee = new SalesDepartmentEmployee(EmployeeKind.SalesDepartment);
-				employee.getUserInput(input);
-				employees.add(employee);
+				employeeInput = new SalesDepartmentEmployee(EmployeeKind.SalesDepartment);
+				employeeInput.getUserInput(input);
+				employees.add(employeeInput);
 				break;
 			}
 			else if (kind == 2) {
-				employee = new PlanningDepartmentEmployee(EmployeeKind.PlanningDepartment);
-				employee.getUserInput(input);
-				employees.add(employee);
+				employeeInput = new PlanningDepartmentEmployee(EmployeeKind.PlanningDepartment);
+				employeeInput.getUserInput(input);
+				employees.add(employeeInput);
 				break;
 			}
 			else if (kind == 3) {
-				employee = new HumanResourcesDepartmentEmployee(EmployeeKind.HumanResourcesDepartment);
-				employee.getUserInput(input);
-				employees.add(employee);
+				employeeInput = new HumanResourcesDepartmentEmployee(EmployeeKind.HumanResourcesDepartment);
+				employeeInput.getUserInput(input);
+				employees.add(employeeInput);
 				break;
 			}
 			else if (kind == 4) {
-				employee = new AccountingDepartmentEmployee(EmployeeKind.AccountingDepartment);
-				employee.getUserInput(input);
-				employees.add(employee);
+				employeeInput = new AccountingDepartmentEmployee(EmployeeKind.AccountingDepartment);
+				employeeInput.getUserInput(input);
+				employees.add(employeeInput);
 				break;
 			}
 			else if (kind == 5) {
-				employee = new MarketingDepartmentEmployee(EmployeeKind.MarketingDepartment);
-				employee.getUserInput(input);
-				employees.add(employee);
+				employeeInput = new MarketingDepartmentEmployee(EmployeeKind.MarketingDepartment);
+				employeeInput.getUserInput(input);
+				employees.add(employeeInput);
 				break;
 			}
 			else {
@@ -94,8 +95,8 @@ public class EmployeeManager {
 		System.out.print("Employee ID:");
 		int employeeId = input.nextInt();
 		for(int i =0; i<employees.size(); i++) {
-			Employee employee = employees.get(i);
-			if(employee.getId() == employeeId) {
+			EmployeeInput employeeInput = employees.get(i);
+			if(employeeInput.getId() == employeeId) {
 				int num = -1;
 				while( num != 5) {
 					System.out.println("** Employee Info Edit Menu **");
@@ -109,22 +110,22 @@ public class EmployeeManager {
 					if(num == 1) {
 						System.out.print("Employee ID:");
 						int id = input.nextInt(); 
-						employee.setId(id);
+						employeeInput.setId(id);
 					}
 					else if(num == 2) {
 						System.out.print("Employee name:");
 						String name = input.next();
-						employee.setName(name);
+						employeeInput.setName(name);
 					}
 					else if (num == 3) {
 						System.out.print("Email address:");
 						String email = input.next();
-						employee.setEmail(email);
+						employeeInput.setEmail(email);
 					}
 					else if (num == 4) {
 						System.out.print("Phnoe number:");
 						String phoneNumber = input.next();
-						employee.setPhoneNumber(phoneNumber);
+						employeeInput.setPhoneNumber(phoneNumber);
 					}
 					else {
 						continue;
@@ -138,7 +139,7 @@ public class EmployeeManager {
 	public void viewEmployees() {
 		System.out.println("# of registered employees:" + employees.size());
 		for(int i = 0; i < employees.size(); i++){
-			employees.get(i).printinfo();
+			employees.get(i).printInfo();
 		}
 	}
 

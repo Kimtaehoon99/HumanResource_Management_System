@@ -2,7 +2,7 @@ package employee;
 
 import java.util.Scanner;
 
-public class Employee {
+public abstract  class Employee {
 
 	protected EmployeeKind kind;		//employee의 부서
 	protected String name;				//employee의 이름
@@ -73,28 +73,8 @@ public class Employee {
 		this.phoneNumber = phoneNumber;	//Employee의 phoneNumber에 대한 정보를 수정하는 메소드
 	}
 	
-	public void printinfo() {			//Employee의 정보를 출력하는 메소드
-		
-		String skind = "none";
-		
-		switch(this.kind) {
-		case SalesDepartment:
-			skind = "Sale";
-			break;
-		case PlanningDepartment:
-			skind = "Planning";
-			break;
-		case HumanResourcesDepartment:
-			skind = "HumanResource";
-			break;
-		case AccountingDepartment:
-			skind = "Accounting";
-			break;	
-		default:
-			
-		}
-		System.out.println("kind" + skind + "name:"+ name + " id:" + id + " email:" + email + " phoneNumber" + phoneNumber);
-	}
+	public abstract void printInfo();		//Employee의 정보를 출력하는 메소드
+	
 
 	public void getUserInput(Scanner input) {	//Employee의 정보를 입력하는 메소드
 		System.out.print("Employee Id:");

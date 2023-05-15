@@ -2,7 +2,7 @@ package employee;
 
 import java.util.Scanner;
 
-public class HumanResourcesDepartmentEmployee extends Employee{
+public class HumanResourcesDepartmentEmployee extends Employee implements EmployeeInput{
 	//Employee 클래스를 상속하였으며 추가 필드를 가진다.
 	protected int recruitmentCount;				// 해당 직원이 채용에 참여한 인원 수 (정수)
 	protected int trainingProgramsDeveloped; 	//해당 직원이 개발한 교육 프로그램 수 (정수)
@@ -71,7 +71,7 @@ public class HumanResourcesDepartmentEmployee extends Employee{
 		
 	}
 	
-	public void printinfo() {
+	public void printInfo() {
 		
 		String skind = "none";
 		
