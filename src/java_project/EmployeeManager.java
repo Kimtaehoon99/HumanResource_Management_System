@@ -1,6 +1,7 @@
 package java_project;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import employee.AccountingDepartmentEmployee;
@@ -25,46 +26,55 @@ public class EmployeeManager {
 	public void addEmployee() {
 		int kind = 0;
 		EmployeeInput employeeInput;
-		while(kind != 1 && kind != 2 && kind != 3 && kind != 4 && kind != 5) {
-			System.out.println("1 for SalesDevelopement");
-			System.out.println("2 for PlanningDepartment");
-			System.out.println("3 for HumanResourcesDepartment");
-			System.out.println("4 for AccountingDepartment");
-			System.out.println("5 for MarketingDepartment");
-			System.out.println("Select Employee Kind between 1 and 5");
-			kind = input.nextInt();
-			if (kind == 1) {
-				employeeInput = new SalesDepartmentEmployee(EmployeeKind.SalesDepartment);
-				employeeInput.getUserInput(input);
-				employees.add(employeeInput);
-				break;
-			}
-			else if (kind == 2) {
-				employeeInput = new PlanningDepartmentEmployee(EmployeeKind.PlanningDepartment);
-				employeeInput.getUserInput(input);
-				employees.add(employeeInput);
-				break;
-			}
-			else if (kind == 3) {
-				employeeInput = new HumanResourcesDepartmentEmployee(EmployeeKind.HumanResourcesDepartment);
-				employeeInput.getUserInput(input);
-				employees.add(employeeInput);
-				break;
-			}
-			else if (kind == 4) {
-				employeeInput = new AccountingDepartmentEmployee(EmployeeKind.AccountingDepartment);
-				employeeInput.getUserInput(input);
-				employees.add(employeeInput);
-				break;
-			}
-			else if (kind == 5) {
-				employeeInput = new MarketingDepartmentEmployee(EmployeeKind.MarketingDepartment);
-				employeeInput.getUserInput(input);
-				employees.add(employeeInput);
-				break;
-			}
-			else {
+		while(kind < 1 || kind > 5) {
+			try {
+				System.out.println("1 for SalesDevelopement");
+				System.out.println("2 for PlanningDepartment");
+				System.out.println("3 for HumanResourcesDepartment");
+				System.out.println("4 for AccountingDepartment");
+				System.out.println("5 for MarketingDepartment");
 				System.out.println("Select Employee Kind between 1 and 5");
+				kind = input.nextInt();
+				if (kind == 1) {
+					employeeInput = new SalesDepartmentEmployee(EmployeeKind.SalesDepartment);
+					employeeInput.getUserInput(input);
+					employees.add(employeeInput);
+					break;
+				}
+				else if (kind == 2) {
+					employeeInput = new PlanningDepartmentEmployee(EmployeeKind.PlanningDepartment);
+					employeeInput.getUserInput(input);
+					employees.add(employeeInput);
+					break;
+				}
+				else if (kind == 3) {
+					employeeInput = new HumanResourcesDepartmentEmployee(EmployeeKind.HumanResourcesDepartment);
+					employeeInput.getUserInput(input);
+					employees.add(employeeInput);
+					break;
+				}
+				else if (kind == 4) {
+					employeeInput = new AccountingDepartmentEmployee(EmployeeKind.AccountingDepartment);
+					employeeInput.getUserInput(input);
+					employees.add(employeeInput);
+					break;
+				}
+				else if (kind == 5) {
+					employeeInput = new MarketingDepartmentEmployee(EmployeeKind.MarketingDepartment);
+					employeeInput.getUserInput(input);
+					employees.add(employeeInput);
+					break;
+				}
+				else {
+					System.out.println("Select Employee Kind between 1 and 5");
+				}
+			}
+			catch(InputMismatchException e) {
+				System.out.println("Please put an integer between 1 and 5!");
+				if (input.hasNext()) {
+					input.next();
+				}
+				kind = -1;
 			}
 		}
 
@@ -73,6 +83,11 @@ public class EmployeeManager {
 	public void deleteEmployee() {
 		System.out.print("Employee ID:");
 		int employeeId = input.nextInt();
+		int index = findIndex(employeeId);
+		removefromEmployees(index,employeeId);
+	}
+
+	public int findIndex(int employeeId) {
 		int index = -1;
 		for(int i = 0; i<employees.size(); i++) {
 			if (employees.get(i).getId()  == employeeId) {
@@ -80,54 +95,44 @@ public class EmployeeManager {
 				break;
 			}
 		}
-
+		return index;
+	}
+	public int removefromEmployees(int index,int employeeId) {
 		if(index >= 0) {
 			employees.remove(index);
 			System.out.println("the employee" + employeeId + " is deleted");
+			return 1;
 		}
 		else {
 			System.out.println("the employee has not been registered");
-			return;
+			return -1;
 		}
 	}
-	
+
 	public void editEmployee() {
 		System.out.print("Employee ID:");
 		int employeeId = input.nextInt();
 		for(int i =0; i<employees.size(); i++) {
-			EmployeeInput employeeInput = employees.get(i);
-			if(employeeInput.getId() == employeeId) {
+			EmployeeInput employee = employees.get(i);
+			if(employee.getId() == employeeId) {
 				int num = -1;
 				while( num != 5) {
-					System.out.println("** Employee Info Edit Menu **");
-					System.out.println("1. Edit Id");
-					System.out.println("2. Edit Name");
-					System.out.println("3. Edit Email");
-					System.out.println("4, view phone");
-					System.out.println("5. Exit");
-					System.out.println("Select one number between 1-6:");
+					showEditMenu();
 					num = input.nextInt();
-					if(num == 1) {
-						System.out.print("Employee ID:");
-						int id = input.nextInt(); 
-						employeeInput.setId(id);
-					}
-					else if(num == 2) {
-						System.out.print("Employee name:");
-						String name = input.next();
-						employeeInput.setName(name);
-					}
-					else if (num == 3) {
-						System.out.print("Email address:");
-						String email = input.next();
-						employeeInput.setEmail(email);
-					}
-					else if (num == 4) {
-						System.out.print("Phnoe number:");
-						String phoneNumber = input.next();
-						employeeInput.setPhoneNumber(phoneNumber);
-					}
-					else {
+					switch(num) {
+					case 1:
+						employee.setEmployeeID(input);
+						break;
+					case 2:
+						employee.setEmployeeName(input);
+						break;
+					case 3:
+						employee.setEmployeeEmail(input);
+						break;
+					case 4:
+						employee.setEmployeePhoneNumber(input);
+						break;
+					default:
 						continue;
 					}
 				}
@@ -143,4 +148,15 @@ public class EmployeeManager {
 		}
 	}
 
+
+
+	public void showEditMenu() {
+		System.out.println("** Employee Info Edit Menu **");
+		System.out.println("1. Edit Id");
+		System.out.println("2. Edit Name");
+		System.out.println("3. Edit Email");
+		System.out.println("4, view phone");
+		System.out.println("5. Exit");
+		System.out.println("Select one number between 1-6:");
+	}
 }
