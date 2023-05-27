@@ -1,11 +1,11 @@
 package java_project;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import employee.AccountingDepartmentEmployee;
-import employee.Employee;
 import employee.EmployeeInput;
 import employee.EmployeeKind;
 import employee.HumanResourcesDepartmentEmployee;
@@ -14,10 +14,15 @@ import employee.PlanningDepartmentEmployee;
 import employee.SalesDepartmentEmployee;
 
 
-public class EmployeeManager {
+public class EmployeeManager implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1244149871863351172L;
+	
 	ArrayList<EmployeeInput> employees = new ArrayList<EmployeeInput>();	
-	Scanner input;
+	transient Scanner input;
 	EmployeeManager(Scanner input){
 		this.input = input;
 	}

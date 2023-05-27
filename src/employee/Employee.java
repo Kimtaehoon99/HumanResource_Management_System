@@ -1,11 +1,17 @@
 package employee;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import exception.EmailFormatException;
 
-public abstract  class Employee implements EmployeeInput{
+public abstract  class Employee implements EmployeeInput, Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -834746489391630594L;
+	
 	protected EmployeeKind kind;		//employee의 부서
 	protected String name;				//employee의 이름
 	protected int id;					//employee의 id
