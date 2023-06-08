@@ -6,6 +6,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import employee.AccountingDepartmentEmployee;
+import employee.Employee;
 import employee.EmployeeInput;
 import employee.EmployeeKind;
 import employee.HumanResourcesDepartmentEmployee;
@@ -152,7 +153,14 @@ public class EmployeeManager implements Serializable{
 			employees.get(i).printInfo();
 		}
 	}
+	
+	public int size() {
+		return employees.size();
+	}
 
+	public EmployeeInput get(int index) {
+		return (Employee) employees.get(index);
+	}
 
 
 	public void showEditMenu() {

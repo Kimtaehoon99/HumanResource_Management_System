@@ -10,9 +10,15 @@ public interface EmployeeInput {
 	
 	public void setId(int id);
 	
+	public String getName();
+	
 	public void setName(String name);
 	
+	public String getEmail();
+	
 	public void setEmail(String Email) throws EmailFormatException;
+	
+	public String getPhoneNumber();
 	
 	public void setPhoneNumber(String phoneNumber);
 	
